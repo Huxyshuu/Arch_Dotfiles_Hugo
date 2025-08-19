@@ -1,142 +1,128 @@
 #!/usr/bin/env python3
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
-# original code https://gist.github.com/Surendrajat/ff3876fd2166dd86fb71180f4e9342d7
-# weather using python
-
 import requests
 import json
 import os
-from pyquery import PyQuery  # install using `pip install pyquery`
+from datetime import datetime
 
-# weather icons
+# Weather icons mapping based on Open-Meteo weather codes
 weather_icons = {
-    "sunnyDay": "󰖙",
-    "clearNight": "󰖔",
-    "cloudyFoggyDay": "",
-    "cloudyFoggyNight": "",
-    "rainyDay": "",
-    "rainyNight": "",
-    "snowyIcyDay": "",
-    "snowyIcyNight": "",
-    "severe": "",
+    "clear_day": "󰖙",
+    "clear_night": "󰖔",
+    "partly_cloudy_day": "",
+    "partly_cloudy_night": "",
+    "cloudy": "",
+    "fog": "",
+    "drizzle": "",
+    "rain": "",
+    "snow": "",
+    "thunderstorm": "",
     "default": "",
 }
 
+# Weather code mapping: https://open-meteo.com/en/docs
+def map_weather_code(code, is_day):
+    mapping = {
+        0: "clear_day" if is_day else "clear_night",
+        1: "partly_cloudy_day" if is_day else "partly_cloudy_night",
+        2: "partly_cloudy_day" if is_day else "partly_cloudy_night",
+        3: "cloudy",
+        45: "fog",
+        48: "fog",
+        51: "drizzle",
+        53: "drizzle",
+        55: "drizzle",
+        56: "drizzle",
+        57: "drizzle",
+        61: "rain",
+        63: "rain",
+        65: "rain",
+        66: "rain",
+        67: "rain",
+        71: "snow",
+        73: "snow",
+        75: "snow",
+        77: "snow",
+        80: "rain",
+        81: "rain",
+        82: "rain",
+        85: "snow",
+        86: "snow",
+        95: "thunderstorm",
+        96: "thunderstorm",
+        99: "thunderstorm"
+    }
+    return mapping.get(code, "default")
 
-# Get current location based on IP address
+# Get current location
 def get_location():
     response = requests.get("https://ipinfo.io")
     data = response.json()
     loc = data["loc"].split(",")
     return float(loc[0]), float(loc[1])
 
-
-# Get latitude and longitude
 latitude, longitude = get_location()
 
-# Open-Meteo API endpoint
-url = f"https://weather.com/en-PH/weather/today/l/{latitude},{longitude}"
-
-# manual location_id
-# NOTE: if you want to add manually, make sure you disable def get_location above
-# to get your own location_id, go to https://weather.com & search your location.
-# once you choose your location, you can see the location_id in the URL(64 chars long hex string)
-# like this: https://weather.com/en-PH/weather/today/l/bca47d1099e762a012b9a139c36f30a0b1e647f69c0c4ac28b537e7ae9c1c200
-# location_id = "bca47d1099e762a012b9a139c36f30a0b1e647f69c0c4ac28b537e7ae9c1c200"  # TODO
-
-# NOTE to change to deg F, change the URL to your preffered location after weather.com
-# Default is English-Philippines with Busan, South Korea as location_id
-# get html page
-# url = "https://weather.com/en-PH/weather/today/l/" + location_id
-
-html_data = PyQuery(url=url)
-
-# current temperature
-temp = html_data("span[data-testid='TemperatureValue']").eq(0).text()
-
-# current status phrase
-status = html_data("div[data-testid='wxPhrase']").text()
-status = f"{status[:16]}.." if len(status) > 17 else status
-
-# status code
-status_code = html_data("#regionHeader").attr("class").split(" ")[2].split("-")[2]
-
-# status icon
-icon = (
-    weather_icons[status_code]
-    if status_code in weather_icons
-    else weather_icons["default"]
+# Open-Meteo request
+url = (
+    f"https://api.open-meteo.com/v1/forecast?"
+    f"latitude={latitude}&longitude={longitude}"
+    "&current=temperature_2m,apparent_temperature,relative_humidity_2m,visibility,"
+    "precipitation,weather_code,wind_speed_10m,is_day"
+    "&hourly=precipitation_probability"
+    "&daily=temperature_2m_max,temperature_2m_min"
+    "&timezone=auto"
 )
 
-# temperature feels like
-temp_feel = html_data(
-    "div[data-testid='FeelsLikeSection'] > span > span[data-testid='TemperatureValue']"
-).text()
-temp_feel_text = f"Feels like {temp_feel}c"
+data = requests.get(url).json()
 
-# min-max temperature
-temp_min = (
-    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
-    .eq(1)
-    .text()
-)
-temp_max = (
-    html_data("div[data-testid='wxData'] > span[data-testid='TemperatureValue']")
-    .eq(0)
-    .text()
-)
-temp_min_max = f"  {temp_min}\t\t  {temp_max}"
+# Extract current data
+current = data["current"]
+temp = f"{current['temperature_2m']}°C"
+temp_feel_text = f"Feels like {current['apparent_temperature']}°C"
+humidity_text = f"  {current['relative_humidity_2m']}%"
+visibility_text = f"  {round(current['visibility'] / 1000, 1)} km"
+wind_text = f"  {current['wind_speed_10m']} km/h"
+status_code = map_weather_code(current["weather_code"], current["is_day"])
+icon = weather_icons.get(status_code, weather_icons["default"])
 
-# wind speed
-wind_speed = str(html_data("span[data-testid='Wind'] > span").text())
-wind_text = f"  {wind_speed}"
+# Min/max temperature
+temp_min = f"{data['daily']['temperature_2m_min'][0]}°C"
+temp_max = f"{data['daily']['temperature_2m_max'][0]}°C"
+temp_min_max = f"Min:   {temp_min}\t\tMax:   {temp_max}"
 
-# humidity
-humidity = html_data("span[data-testid='PercentageValue']").text()
-humidity_text = f"  {humidity}"
+# Hourly precipitation probability
+precip_probs = data["hourly"]["precipitation_probability"][:6]  # next 6 hours
+prediction = "\n".join(f"{p}%" for p in precip_probs)
+prediction = f"\n\n (hourly)\n{prediction}" if any(precip_probs) else ""
 
-# visibility
-visibility = html_data("span[data-testid='VisibilityValue']").text()
-visibility_text = f"  {visibility}"
-
-# air quality index
-air_quality_index = html_data("text[data-testid='DonutChartValue']").text()
-
-# hourly rain prediction
-prediction = html_data("section[aria-label='Hourly Forecast']")(
-    "div[data-testid='SegmenfehPrecipPercentage'] > span"
-).text()
-prediction = prediction.replace("Chance of Rain", "")
-prediction = f"\n\n (hourly)\n{prediction}" if len(prediction) > 0 else prediction
-
-# tooltip text
+# Tooltip text
 tooltip_text = str.format(
-    "\t\t{}\t\t\n{}\n{}\n{}\n\n{}\n{}\n{}{}",
+    "\t\t{}\t\t\n{}\n{}\n{}\n\n{}\n\n{}\n{}",
     f'<span size="xx-large">{temp}</span>',
-    f"<big> {icon}</big>",
-    f"<b>{status}</b>",
+    f"<big>{icon}</big>",
+    f"<b>{status_code}</b>",
     f"<small>{temp_feel_text}</small>",
     f"<b>{temp_min_max}</b>",
-    f"{wind_text}\t{humidity_text}",
-    f"{visibility_text}\tAQI {air_quality_index}",
-    f"<i> {prediction}</i>",
+    f"{wind_text}\t   {humidity_text}\t{visibility_text}",
+    f"<i>{prediction}</i>",
 )
 
-# print waybar module data
+# Output for Waybar
 out_data = {
     "text": f"{icon}  {temp}",
-    "alt": status,
+    "alt": status_code,
     "tooltip": tooltip_text,
     "class": status_code,
 }
 print(json.dumps(out_data))
 
+# Simple cache text
 simple_weather = (
-    f"{icon}  {status}\n"
+    f"{icon}  {status_code}\n"
     + f"  {temp} ({temp_feel_text})\n"
     + f"{wind_text} \n"
     + f"{humidity_text} \n"
-    + f"{visibility_text} AQI{air_quality_index}\n"
+    + f"{visibility_text}"
 )
 
 try:

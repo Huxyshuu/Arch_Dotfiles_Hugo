@@ -6,7 +6,7 @@
 @define-color red 		#e67e80;
 @define-color green 		#a7c080;
 @define-color yellow 		#dbbc7f;
-@define-color blue 		#7fbbb3;
+@define-color blue 		#37C1F2;
 @define-color magenta 		#d699b6;
 @define-color cyan 		#83c092;
 @define-color orange    #e0a25a;
@@ -54,8 +54,8 @@ tooltip label {
 #workspaces {
     background: @background;
     margin: 5px 5px;
-    padding: 8px 5px;
-    border-radius: 16px;
+    padding: 8px 10px;
+    border-radius: 10px 24px 10px 24px;
     color: @foreground;
 }
 #workspaces button {
@@ -70,10 +70,10 @@ tooltip label {
 
 #workspaces button.active {
     font-weight: bold;
-    background-color: @cyan;
+    background-color: @orange;
     color: @foreground-alt;
     border-radius: 16px;
-    min-width: 50px;
+    min-width: 30px;
     background-size: 400% 400%;
     transition: all 0.3s ease-in-out;
 }

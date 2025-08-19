@@ -22,7 +22,6 @@
 	/*----------Modules Center--------------*/
 	"modules-center": [
 		"custom/weather",
-		// "hyprland/workspaces",
 		"custom/launcher",
 		"custom/swaync"
 	],
@@ -30,6 +29,7 @@
 	"modules-right": [
 		// "tray",
 		// "battery",
+		"hyprland/workspaces",
 		"custom/fcitx5", // input method 
 		"pulseaudio",
 		"bluetooth",
@@ -48,7 +48,10 @@
 
 	/*----------Hyprland Workspace----------*/
 	"hyprland/workspaces": {
-		"format": "Here!"
+		"on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{}"
 	},
 
 	/*-----------Weather---------------*/
@@ -59,9 +62,9 @@
 		"interval": 3600,
 		"return-type": "json",
 		"exec": "$HOME/.config/waybar/scripts/Weather.py",
-	    	//"exec": "$HOME/.config/hypr/UserScripts/Weather.sh",
-	    	//"exec-if": "ping wttr.in -c1",
-	    	"tooltip": true
+		// "exec": "$HOME/.config/hypr/UserScripts/Weather.sh",
+		//"exec-if": "ping wttr.in -c1",
+		"tooltip": true
 	},
 	/*-----------SwayNC----------------*/
 
