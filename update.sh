@@ -8,6 +8,7 @@ CONFIG_FOLDERS=(
     "$HOME/.config/rofi"
     "$HOME/.config/waybar"
     "$HOME/.config/wlogout"
+    "$HOME/.config/eww"
 )
 CONFIG_TARGET="./.config"
 
@@ -62,8 +63,14 @@ if [[ "$answer" =~ ^[Yy]$ ]]; then
 
   # Push to the current branch
   git push
+  PUSH_EXIT_CODE=$?
 
-  echo -e "\e[32mChanges pushed to Git successfully.\e[0m"
+  if [[ $PUSH_EXIT_CODE -eq 0 ]]; then
+    echo -e "\e[32mChanges pushed to Git successfully.\e[0m"
+  else
+    echo -e "\e[31mGit push failed! You might need to pull and merge first.\e[0m"
+    echo -e "\e[33mTry running: git pull --rebase and resolve conflicts before pushing again.\e[0m"
+  fi
 else
   echo -e "\e[33mSkipping git commit and push.\e[0m"
 fi
