@@ -18,7 +18,7 @@
 
 
 ################
-### MONITORS ###
+ ### MONITORS ###
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -218,10 +218,10 @@ input {
     }
 }
 
-# https://wiki.hyprland.org/Configuring/Variables/#gestures || this needs a its' own config
-# gestures {
-#     workspace_swipe = false
-# }
+# https://wiki.hyprland.org/Configuring/Variables/#gestures
+gestures {
+    workspace_swipe = false
+}
 
 # Example per-device config
 # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
@@ -251,8 +251,7 @@ bind = $mainMod, B, exec, $browser,
 bind = $mainMod, V, exec, $clipboard,
 bind = $mainMod, L, exec, hyprlock
 bind = $mainMod SHIFT, Q, exec, $HOME/.config/hypr/scripts/wlogout.sh
-# bind = , Print, exec, ~/Scripts/screenshot.sh # Custom screenshot script, not too good :(
-bind = , Print, exec, flameshot gui
+bind = , Print, exec, ~/Scripts/screenshot.sh
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l

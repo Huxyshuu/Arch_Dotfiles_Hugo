@@ -9,6 +9,7 @@ CONFIG_FOLDERS=(
     "$HOME/.config/waybar"
     "$HOME/.config/wlogout"
     "$HOME/.config/eww"
+    "$HOME/.config/flameshot"
 )
 CONFIG_TARGET="./.config"
 
