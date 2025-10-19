@@ -1,0 +1,16 @@
+
+
+## Finland
+Server = https://fi.arch.niranjan.co/$repo/os/$arch
+Server = https://cdnmirror.com/archlinux/$repo/os/$arch
+Server = http://cdnmirror.com/archlinux/$repo/os/$arch
+Server = http://mirror.5i.fi/archlinux/$repo/os/$arch
+Server = http://mirror.wuki.li/archlinux/$repo/os/$arch
+Server = http://arch.yhtez.xyz/$repo/os/$arch
+Server = http://arch.mirror.far.fi/$repo/os/$arch
+Server = https://arch.yhtez.xyz/$repo/os/$arch
+Server = https://mirror.5i.fi/archlinux/$repo/os/$arch
+Server = https://archlinux.doridian.net/$repo/os/$arch
+Server = https://mirror.srv.fail/archlinux/$repo/os/$arch
+Server = https://mirror1.sl-chat.ru/archlinux/$repo/os/$arch
+Server = https://mirror.wuki.li/archlinux/$repo/os/$arch

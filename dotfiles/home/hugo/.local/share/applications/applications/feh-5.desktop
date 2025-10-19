@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=feh
+MimeType=image/webp;
+Name=feh
+NoDisplay=true
+Type=Application

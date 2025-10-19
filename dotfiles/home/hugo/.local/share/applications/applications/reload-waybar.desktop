@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Reload Waybar
+Exec=/home/hugo/Scripts/reload-waybar.sh
+Type=Application
+Terminal=false
