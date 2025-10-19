@@ -1,0 +1,15 @@
+calibre-bin
+eww
+google-chrome
+miniforge
+paru
+paru-debug
+postman-bin
+proton-ge-custom-bin
+sddm-sugar-candy-git
+visual-studio-code-bin
+wlogout
+yay
+yay-debug
+zotero
+zotero-debug
