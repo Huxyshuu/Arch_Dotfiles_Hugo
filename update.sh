@@ -8,6 +8,18 @@
 set -e
 
 BACKUP_DIR="./dotfiles"
+BRANCH="main"
+
+# === Pull latest from GitHub first ===
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo -e "\e[34mPulling latest changes from GitHub...\e[0m"
+  git fetch origin "$BRANCH"
+  git checkout "$BRANCH"
+  git pull origin "$BRANCH"
+  echo -e "\e[32m✔ Repo updated successfully.\e[0m"
+else
+  echo -e "\e[31mNot a git repository. Skipping git pull.\e[0m"
+fi
 
 # Folders/files to back up (absolute paths)
 CONFIG_PATHS=(
