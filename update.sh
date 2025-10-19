@@ -7,7 +7,7 @@
 
 set -e
 
-BACKUP_DIR="./dotfiles_$(date +%Y%m%d-%H%M%S)"
+BACKUP_DIR="./dotfiles"
 
 # Folders/files to back up (absolute paths)
 CONFIG_PATHS=(
@@ -19,12 +19,13 @@ CONFIG_PATHS=(
     "$HOME/.config/wlogout"               # Logout screen
     "$HOME/.config/eww"                   # Widget tool
     "$HOME/.config/flameshot"             # Screenshot tool
+    "$HOME/.bashrc"                       # Bash configuration
     "/usr/share/sddm/themes/sugar-candy"  # SDDM theme
     "/etc/sddm.conf.d"                    # SDDM configuration
-)
-
-HOME_FILES=(
-    "$HOME/.bashrc"
+    "/etc/pacman.d/mirrorlist"            # Pacman mirrorlist
+    "/etc/pacman.conf"                    # Pacman configuration
+    "/etc/paru.conf"                      # Paru configuration
+    "$HOME/.local/share/applications/"    # User applications, remember to remove unnecessary apps
 )
 
 mkdir -p "$BACKUP_DIR"
@@ -43,9 +44,17 @@ copy_item() {
 }
 
 # Copy configs and home files
-for SRC in "${CONFIG_PATHS[@]}" "${HOME_FILES[@]}"; do
+for SRC in "${CONFIG_PATHS[@]}"; do
   copy_item "$SRC"
 done
+
+# Official repository packages
+mkdir -p packages
+pacman -Qqe > packages/pkglist.txt
+# AUR packages
+pacman -Qqm > packages/aurlist.txt
+
+fc-list > fonts_list.txt
 
 echo -e "\e[34mBackup complete → $BACKUP_DIR\e[0m"
 
