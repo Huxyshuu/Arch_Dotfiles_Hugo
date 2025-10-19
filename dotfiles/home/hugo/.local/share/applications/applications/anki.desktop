@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Anki 25.02.7
-Exec=anki
-Icon=anki
-Terminal=false
-Categories=Education;
-StartupWMClass=anki

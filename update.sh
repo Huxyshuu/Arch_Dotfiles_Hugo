@@ -20,12 +20,14 @@ CONFIG_PATHS=(
     "$HOME/.config/eww"                   # Widget tool
     "$HOME/.config/flameshot"             # Screenshot tool
     "$HOME/.bashrc"                       # Bash configuration
+    "$HOME/Scripts"                       # Scripts
+    "$HOME/Wallpapers"                    # Wallpapers
     "/usr/share/sddm/themes/sugar-candy"  # SDDM theme
     "/etc/sddm.conf.d"                    # SDDM configuration
     "/etc/pacman.d/mirrorlist"            # Pacman mirrorlist
     "/etc/pacman.conf"                    # Pacman configuration
     "/etc/paru.conf"                      # Paru configuration
-    "$HOME/.local/share/applications/"    # User applications, remember to remove unnecessary apps
+    "$HOME/.local/share/applications"     # User applications, remember to remove unnecessary apps
 )
 
 mkdir -p "$BACKUP_DIR"
