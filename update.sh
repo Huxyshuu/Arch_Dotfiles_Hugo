@@ -1,77 +1,67 @@
 #!/bin/bash
 
-# .config folders
-CONFIG_FOLDERS=(
-    "$HOME/.config/fastfetch"
-    "$HOME/.config/hypr"
-    "$HOME/.config/kitty"
-    "$HOME/.config/rofi"
-    "$HOME/.config/waybar"
-    "$HOME/.config/wlogout"
-    "$HOME/.config/eww"
-    "$HOME/.config/flameshot"
+########################
+# This script pushes system and configuration files 
+# into github repo
+########################
+
+set -e
+
+BACKUP_DIR="./dotfiles_$(date +%Y%m%d-%H%M%S)"
+
+# Folders/files to back up (absolute paths)
+CONFIG_PATHS=(
+    "$HOME/.config/fastfetch"             # System info tool
+    "$HOME/.config/hypr"                  # Window manager
+    "$HOME/.config/kitty"                 # Terminal emulator
+    "$HOME/.config/rofi"                  # Application launcher
+    "$HOME/.config/waybar"                # Status bar
+    "$HOME/.config/wlogout"               # Logout screen
+    "$HOME/.config/eww"                   # Widget tool
+    "$HOME/.config/flameshot"             # Screenshot tool
+    "/usr/share/sddm/themes/sugar-candy"  # SDDM theme
+    "/etc/sddm.conf.d"                    # SDDM configuration
 )
-CONFIG_TARGET="./.config"
 
-mkdir -p "$CONFIG_TARGET"
-
-for SRC in "${CONFIG_FOLDERS[@]}"; do
-  if [[ -e "$SRC" ]]; then
-    echo -e "\e[32mCopying $SRC to $CONFIG_TARGET\e[0m"
-    if [[ -d "$SRC" ]]; then
-      cp -r "$SRC" "$CONFIG_TARGET/"
-    else
-      cp "$SRC" "$CONFIG_TARGET/"
-    fi
-  else
-    echo -e "\e[31mSkipping $SRC — folder/file does not exist.\e[0m"
-  fi
-done
-
-# home files/folders
-HOME_ITEMS=(
+HOME_FILES=(
     "$HOME/.bashrc"
 )
-TARGET="."
 
-mkdir -p "$TARGET"
+mkdir -p "$BACKUP_DIR"
 
-for SRC in "${HOME_ITEMS[@]}"; do
+copy_item() {
+  local SRC="$1"
   if [[ -e "$SRC" ]]; then
-    echo -e "\e[32mCopying $SRC to $TARGET\e[0m"
-    if [[ -d "$SRC" ]]; then
-      cp -r "$SRC" "$TARGET/"
-    else
-      cp "$SRC" "$TARGET/"
-    fi
+    REL_PATH="${SRC#/}"   # remove leading /
+    DEST="$BACKUP_DIR/$REL_PATH"
+    echo -e "\e[32mCopying $SRC → $DEST\e[0m"
+    mkdir -p "$(dirname "$DEST")"
+    cp -r "$SRC" "$DEST"
   else
-    echo -e "\e[31mSkipping $SRC — folder/file does not exist.\e[0m"
+    echo -e "\e[31mSkipping $SRC — does not exist.\e[0m"
   fi
+}
+
+# Copy configs and home files
+for SRC in "${CONFIG_PATHS[@]}" "${HOME_FILES[@]}"; do
+  copy_item "$SRC"
 done
 
-echo -e "\e[34mDone copying!\e[0m"
+echo -e "\e[34mBackup complete → $BACKUP_DIR\e[0m"
 
-# Ask user if they want to commit and push to git
-read -rp "Do you want to commit and push changes to Git? (y/n) " answer
+# Optional Git commit/push
+read -rp "Do you want to commit and push to Git? (y/n) " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
-  read -rp "Enter your commit message: " commit_msg
-
-  # Add all changes
-  git add .
-
-  # Commit with the message
-  git commit -m "$commit_msg"
-
-  # Push to the current branch
-  git push
-  PUSH_EXIT_CODE=$?
-
-  if [[ $PUSH_EXIT_CODE -eq 0 ]]; then
-    echo -e "\e[32mChanges pushed to Git successfully.\e[0m"
-  else
-    echo -e "\e[31mGit push failed! You might need to pull and merge first.\e[0m"
-    echo -e "\e[33mTry running: git pull --rebase and resolve conflicts before pushing again.\e[0m"
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo -e "\e[31mNot a git repository. Skipping git operations.\e[0m"
+    exit 1
   fi
+
+  read -rp "Enter commit message: " commit_msg
+  git add "$BACKUP_DIR"
+  git commit -m "$commit_msg"
+  git push && echo -e "\e[32mChanges pushed!\e[0m" || \
+    echo -e "\e[31mGit push failed; pull/rebase and try again.\e[0m"
 else
-  echo -e "\e[33mSkipping git commit and push.\e[0m"
+  echo -e "\e[33mSkipping git push.\e[0m"
 fi
