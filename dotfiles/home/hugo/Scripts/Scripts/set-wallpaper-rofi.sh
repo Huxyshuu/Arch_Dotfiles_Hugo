@@ -15,7 +15,12 @@ image=$(echo "$wallpapers" | rofi -dmenu -i -p "Select wallpaper:")
 # Write hyprpaper config
 cat <<EOF > "$HOME/.config/hypr/hyprpaper.conf"
 preload = $image
-wallpaper = ,$image
+
+wallpaper {
+    monitor =
+    path = $image
+    fit_mode = cover
+}
 EOF
 
 # Restart hyprpaper to apply new wallpaper

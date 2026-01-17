@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=theHunter: Call of the Wild™
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/518790
+Icon=steam_icon_518790
+Terminal=false
+Type=Application
+Categories=Game;

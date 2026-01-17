@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Schedule I
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/3164500
+Icon=steam_icon_3164500
+Terminal=false
+Type=Application
+Categories=Game;

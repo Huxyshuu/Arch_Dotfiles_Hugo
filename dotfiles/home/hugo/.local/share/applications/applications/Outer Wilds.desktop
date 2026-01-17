@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Outer Wilds
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/753640
+Icon=steam_icon_753640
+Terminal=false
+Type=Application
+Categories=Game;

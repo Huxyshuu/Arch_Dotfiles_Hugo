@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Biped 2
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/2560240
+Icon=steam_icon_2560240
+Terminal=false
+Type=Application
+Categories=Game;
