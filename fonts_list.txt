@@ -22,6 +22,7 @@
 /usr/share/fonts/liberation/LiberationSerif-Italic.ttf: Liberation Serif:style=Italic
 /usr/share/fonts/noto/NotoSansNandinagari-Regular.ttf: Noto Sans Nandinagari:style=Regular
 /usr/share/fonts/noto/NotoSansDevanagari-Regular.ttf: Noto Sans Devanagari:style=Regular
+/usr/share/fonts/noto/NotoSerifHentaigana-Black.ttf: Noto Serif Hentaigana,Noto Serif Hentaigana Black:style=Black,Regular
 /usr/share/fonts/noto/NotoSansSoraSompeng-Bold.ttf: Noto Sans Sora Sompeng:style=Bold
 /usr/share/fonts/TTF/JetBrainsMonoNerdFontMono-MediumItalic.ttf: JetBrainsMono Nerd Font Mono,JetBrainsMono NFM,JetBrainsMono NFM Medium:style=Medium Italic,Italic
 /usr/share/fonts/noto/NotoSansGurmukhiUI-Bold.ttf: Noto Sans Gurmukhi UI:style=Bold
@@ -397,6 +398,7 @@
 /usr/share/fonts/noto/NotoSansSyriacWestern-Black.ttf: Noto Sans Syriac Western,Noto Sans Syriac Western Black:style=Black,Regular
 /usr/share/fonts/noto/NotoSerifDisplay-Medium.ttf: Noto Serif Display,Noto Serif Display Medium:style=Medium,Regular
 /usr/share/fonts/noto/NotoSansSymbols2-Regular.ttf: Noto Sans Symbols 2:style=Regular
+/usr/share/fonts/noto/NotoSansSinhala-ThinCondensed.ttf: Noto Sans Sinhala,Noto Sans Sinhala Thin Condensed:style=Thin Condensed,Regular
 /usr/share/fonts/noto/NotoSerifArmenian-Light.ttf: Noto Serif Armenian,Noto Serif Armenian Light:style=Light,Regular
 /usr/share/fonts/noto-cjk/NotoSansCJK-Light.ttc: Noto Sans CJK HK,Noto Sans CJK HK Light:style=Light,Regular
 /usr/share/fonts/noto/NotoSansCherokee-Light.ttf: Noto Sans Cherokee,Noto Sans Cherokee Light:style=Light,Regular
@@ -471,6 +473,7 @@
 /usr/share/fonts/noto/NotoSerif-Regular.ttf: Noto Serif:style=Regular
 /usr/share/fonts/noto/NotoSansSyriacWestern-Thin.ttf: Noto Sans Syriac Western,Noto Sans Syriac Western Thin:style=Thin,Regular
 /usr/share/fonts/noto/NotoSansLao-Regular.ttf: Noto Sans Lao:style=Regular
+/usr/share/fonts/noto/NotoSerifHentaigana-Medium.ttf: Noto Serif Hentaigana,Noto Serif Hentaigana Medium:style=Medium,Regular
 /usr/share/fonts/noto-cjk/NotoSerifCJK-Medium.ttc: Noto Serif CJK JP,Noto Serif CJK JP Medium:style=Medium,Regular
 /usr/share/fonts/TTF/JetBrainsMonoNLNerdFontMono-LightItalic.ttf: JetBrainsMonoNL Nerd Font Mono,JetBrainsMonoNL NFM,JetBrainsMonoNL NFM Light:style=Light Italic,Italic
 /usr/share/fonts/noto/NotoSansCaucasianAlbanian-Regular.ttf: Noto Sans Caucasian Albanian:style=Regular
@@ -548,6 +551,7 @@
 /usr/share/fonts/noto-cjk/NotoSansCJK-Light.ttc: Noto Sans CJK SC,Noto Sans CJK SC Light:style=Light,Regular
 /usr/share/fonts/noto/NotoSansHanifiRohingya-Bold.ttf: Noto Sans Hanifi Rohingya:style=Bold
 /usr/share/fonts/noto/NotoSansLepcha-Regular.ttf: Noto Sans Lepcha:style=Regular
+/usr/share/fonts/noto/NotoSansSinhala-BlackCondensed.ttf: Noto Sans Sinhala,Noto Sans Sinhala Black Condensed:style=Black Condensed,Regular
 /usr/share/fonts/noto/NotoSansSinhalaUI-Medium.ttf: Noto Sans Sinhala UI,Noto Sans Sinhala UI Medium:style=Medium,Regular
 /usr/share/fonts/TTF/JetBrainsMonoNL-Italic.ttf: JetBrains Mono NL:style=Italic
 /usr/share/fonts/noto/NotoSansTifinaghAir-Regular.ttf: Noto Sans Tifinagh Air:style=Regular
@@ -567,6 +571,7 @@
 /usr/share/fonts/TTF/JetBrainsMonoNerdFontPropo-SemiBoldItalic.ttf: JetBrainsMono Nerd Font Propo,JetBrainsMono NFP,JetBrainsMono NFP SemiBold:style=SemiBold Italic,Italic
 /usr/share/fonts/noto/NotoSerifKhmer-Bold.ttf: Noto Serif Khmer:style=Bold
 /usr/share/fonts/noto/NotoSansGeorgian-Medium.ttf: Noto Sans Georgian,Noto Sans Georgian Medium:style=Medium,Regular
+/usr/share/fonts/noto/NotoSerifTodhri-Regular.ttf: Noto Serif Todhri:style=Regular
 /usr/share/fonts/noto/NotoSansWancho-Regular.ttf: Noto Sans Wancho:style=Regular
 /usr/share/fonts/noto/NotoSansPalmyrene-Regular.ttf: Noto Sans Palmyrene:style=Regular
 /usr/share/fonts/noto/NotoSerifMyanmar-Bold.ttf: Noto Serif Myanmar:style=Bold
@@ -602,6 +607,7 @@
 /usr/share/fonts/noto/NotoSansLisu-Regular.ttf: Noto Sans Lisu:style=Regular
 /usr/share/fonts/noto/NotoSerifHebrew-Light.ttf: Noto Serif Hebrew,Noto Serif Hebrew Light:style=Light,Regular
 /usr/share/fonts/noto/NotoSansWarangCiti-Regular.ttf: Noto Sans Warang Citi:style=Regular
+/usr/share/fonts/noto/NotoSerifHentaigana-Bold.ttf: Noto Serif Hentaigana,Noto Serif Hentaigana Bold:style=Bold,Regular
 /usr/share/fonts/noto-cjk/NotoSerifCJK-SemiBold.ttc: Noto Serif CJK KR,Noto Serif CJK KR SemiBold:style=SemiBold,Regular
 /usr/share/fonts/TTF/Hack-BoldItalic.ttf: Hack:style=Bold Italic
 /usr/share/fonts/noto/NotoSansHebrew-Bold.ttf: Noto Sans Hebrew:style=Bold
@@ -654,6 +660,7 @@
 /usr/share/fonts/Adwaita/AdwaitaSans-Italic.ttf: Adwaita Sans:style=Bold Italic
 /usr/share/fonts/noto/NotoSerif-Black.ttf: Noto Serif,Noto Serif Black:style=Black,Regular
 /usr/share/fonts/noto/NotoSerifBalinese-Regular.ttf: Noto Serif Balinese:style=Regular
+/usr/share/fonts/noto/NotoSerifHentaigana-Regular.ttf: Noto Serif Hentaigana:style=Regular
 /usr/share/fonts/TTF/JetBrainsMonoNerdFontMono-ExtraLightItalic.ttf: JetBrainsMono Nerd Font Mono,JetBrainsMono NFM,JetBrainsMono NFM ExtraLight:style=ExtraLight Italic,Italic
 /usr/share/fonts/noto/NotoSansTakri-Regular.ttf: Noto Sans Takri:style=Regular
 /usr/share/fonts/noto-cjk/NotoSerifCJK-Medium.ttc: Noto Serif CJK KR,Noto Serif CJK KR Medium:style=Medium,Regular
@@ -760,6 +767,7 @@
 /usr/share/fonts/TTF/JetBrainsMono-LightItalic.ttf: JetBrains Mono,JetBrains Mono Light:style=Light Italic,Italic
 /usr/share/fonts/noto/NotoSansMalayalamUI-Black.ttf: Noto Sans Malayalam UI,Noto Sans Malayalam UI Black:style=Black,Regular
 /usr/share/fonts/noto/NotoSansBengali-Medium.ttf: Noto Sans Bengali,Noto Sans Bengali Medium:style=Medium,Regular
+/usr/share/fonts/noto/NotoSerifHentaigana-Light.ttf: Noto Serif Hentaigana,Noto Serif Hentaigana Light:style=Light,Regular
 /usr/share/fonts/liberation/LiberationMono-BoldItalic.ttf: Liberation Mono:style=Bold Italic
 /usr/share/fonts/noto/NotoSansTamilUI-Thin.ttf: Noto Sans Tamil UI,Noto Sans Tamil UI Thin:style=Thin,Regular
 /usr/share/fonts/noto/NotoSerifAhom-Regular.ttf: Noto Serif Ahom:style=Regular

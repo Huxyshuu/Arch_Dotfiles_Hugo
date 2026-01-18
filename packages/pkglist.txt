@@ -1,5 +1,6 @@
 adobe-source-han-sans-jp-fonts
 adobe-source-han-serif-jp-fonts
+alsa-utils
 ark
 base
 base-devel
@@ -14,8 +15,11 @@ cpio
 cronie
 cuda
 ddrescue
+deno-stable-bin
 discord
 dkms
+docker
+docker-desktop
 dosfstools
 efibootmgr
 ethtool
@@ -36,6 +40,7 @@ ghostty
 git
 google-chrome
 grim
+grub
 gst-libav
 gst-plugin-pipewire
 gst-plugins-bad
@@ -65,6 +70,7 @@ krita
 kwalletmanager
 lib32-gamemode
 lib32-mangohud
+lib32-nvidia-580xx-utils
 libliftoff
 libpulse
 libreoffice-fresh
@@ -72,6 +78,7 @@ libva-nvidia-driver
 linux
 linux-firmware
 linux-headers
+linux-lts
 man-db
 man-pages
 mangohud
@@ -87,7 +94,8 @@ nodejs
 noto-fonts-cjk
 npm
 ntfs-3g
-nvidia
+nvidia-580xx-dkms
+nvidia-580xx-utils
 nvtop
 openvpn
 os-prober
@@ -104,6 +112,7 @@ plasma-workspace
 polkit-gnome
 postman-bin
 proton-ge-custom-bin
+pyenv
 python-pillow
 python-pip
 python-pipx
@@ -111,6 +120,7 @@ python-pyqt5
 python-pyquery
 python-requests
 python-virtualenv
+reflector
 rofi
 rofi-emoji
 rsync
@@ -126,6 +136,7 @@ stow
 swayidle
 swaync
 tcpdump
+tesseract-data-jpn
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
@@ -135,6 +146,7 @@ tree
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 tumbler
+unrar
 usbutils
 uv
 vim
