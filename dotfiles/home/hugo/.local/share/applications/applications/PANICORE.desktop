@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=PANICORE
-Comment=Play this game on Steam
-Exec=steam steam://rungameid/2695940
-Icon=steam_icon_2695940
-Terminal=false
-Type=Application
-Categories=Game;

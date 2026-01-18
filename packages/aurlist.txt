@@ -8,12 +8,10 @@ miniforge
 nvidia-580xx-dkms
 nvidia-580xx-utils
 paru
-paru-debug
 postman-bin
 proton-ge-custom-bin
 sddm-sugar-candy-git
 visual-studio-code-bin
 wlogout
 yay
-yay-debug
 zotero

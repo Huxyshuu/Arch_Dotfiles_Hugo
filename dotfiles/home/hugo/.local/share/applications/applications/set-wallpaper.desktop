@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Set Wallpaper
-Exec=/home/hugo/Scripts/set-wallpaper-rofi.sh
-Type=Application
-Terminal=false

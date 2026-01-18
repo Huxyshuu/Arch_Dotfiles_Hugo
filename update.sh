@@ -13,8 +13,6 @@ BRANCH="main"
 # === Pull latest from GitHub first ===
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo -e "\e[34mPulling latest changes from GitHub...\e[0m"
-  git fetch origin "$BRANCH"
-  git checkout "$BRANCH"
   git pull origin "$BRANCH"
   echo -e "\e[32m✔ Repo updated successfully.\e[0m"
 else
@@ -44,47 +42,51 @@ CONFIG_PATHS=(
 
 mkdir -p "$BACKUP_DIR"
 
-copy_item() {
+sync_item() {
   local SRC="$1"
   if [[ -e "$SRC" ]]; then
     REL_PATH="${SRC#/}"   # remove leading /
     DEST="$BACKUP_DIR/$REL_PATH"
-    echo -e "\e[32mCopying $SRC → $DEST\e[0m"
+    
+    echo -e "\e[32mSyncing $SRC → $DEST\e[0m"
     mkdir -p "$(dirname "$DEST")"
-    cp -r "$SRC" "$DEST"
+
+    if [[ -d "$SRC" ]]; then
+      # If it's a directory, use rsync to mirror it exactly
+      # The / at the end of SRC/ ensures we copy contents into DEST/
+      sudo rsync -av --delete "$SRC/" "$DEST/"
+    else
+      # If it's a single file, just copy it
+      sudo cp -L "$SRC" "$DEST"
+    fi
   else
     echo -e "\e[31mSkipping $SRC — does not exist.\e[0m"
   fi
 }
 
-# Copy configs and home files
+# Sync configs and home files
 for SRC in "${CONFIG_PATHS[@]}"; do
-  copy_item "$SRC"
+  sync_item "$SRC"
 done
 
-# Official repository packages
+# === Package Lists (Filtered to remove debug/junk) ===
 mkdir -p packages
-pacman -Qqen > packages/pkglist.txt
-# AUR packages
-pacman -Qqem > packages/aurlist.txt
+echo -e "\e[34mUpdating package lists...\e[0m"
+# Filter out 'debug' and 'paru-bin-debug' to keep your repo clean
+pacman -Qqen | grep -v "debug" > packages/pkglist.txt
+pacman -Qqem | grep -v "debug" > packages/aurlist.txt
 
-fc-list > fonts_list.txt
+fc-list : family | sort | uniq > packages/fonts_list.txt
 
 echo -e "\e[34mBackup complete → $BACKUP_DIR\e[0m"
 
 # Optional Git commit/push
 read -rp "Do you want to commit and push to Git? (y/n) " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
-  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    echo -e "\e[31mNot a git repository. Skipping git operations.\e[0m"
-    exit 1
-  fi
-
-  read -rp "Enter commit message: " commit_msg
   git add .
-  git commit -m "$commit_msg"
-  git push && echo -e "\e[32mChanges pushed!\e[0m" || \
-    echo -e "\e[31mGit push failed; pull/rebase and try again.\e[0m"
+  read -rp "Enter commit message: " commit_msg
+  git commit -m "${commit_msg:-Automatic update $(date +'%Y-%m-%d %H:%M')}"
+  git push origin "$BRANCH" && echo -e "\e[32mChanges pushed!\e[0m"
 else
   echo -e "\e[33mSkipping git push.\e[0m"
 fi
