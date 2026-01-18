@@ -3,9 +3,7 @@ deno-stable-bin
 docker-desktop
 eww
 google-chrome
-lib32-libjpeg6-turbo
 lib32-nvidia-580xx-utils
-libjpeg6-turbo
 miniforge
 nvidia-580xx-dkms
 nvidia-580xx-utils

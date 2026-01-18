@@ -7,7 +7,6 @@ base-devel
 bazel
 bind
 blueman
-calibre-bin
 clang
 cliphist
 cmake
@@ -15,15 +14,12 @@ cpio
 cronie
 cuda
 ddrescue
-deno-stable-bin
 discord
 dkms
 docker
-docker-desktop
 dosfstools
 efibootmgr
 ethtool
-eww
 exfatprogs
 fastfetch
 fcitx5
@@ -38,7 +34,6 @@ gamescope
 gammastep
 ghostty
 git
-google-chrome
 grim
 grub
 gst-libav
@@ -70,7 +65,6 @@ krita
 kwalletmanager
 lib32-gamemode
 lib32-mangohud
-lib32-nvidia-580xx-utils
 libliftoff
 libpulse
 libreoffice-fresh
@@ -83,7 +77,6 @@ man-db
 man-pages
 mangohud
 meson
-miniforge
 mpv
 nano
 ncdu
@@ -94,14 +87,10 @@ nodejs
 noto-fonts-cjk
 npm
 ntfs-3g
-nvidia-580xx-dkms
-nvidia-580xx-utils
 nvtop
 openvpn
 os-prober
 otf-font-awesome
-paru
-paru-debug
 pavucontrol
 pipewire
 pipewire-alsa
@@ -110,8 +99,6 @@ pipewire-pulse
 plasma-meta
 plasma-workspace
 polkit-gnome
-postman-bin
-proton-ge-custom-bin
 pyenv
 python-pillow
 python-pip
@@ -124,7 +111,6 @@ reflector
 rofi
 rofi-emoji
 rsync
-sddm-sugar-candy-git
 seatd
 shotcut
 slurp
@@ -150,7 +136,6 @@ unrar
 usbutils
 uv
 vim
-visual-studio-code-bin
 waybar
 wayland-protocols
 wget
@@ -158,15 +143,11 @@ wine
 wireless_tools
 wireplumber
 wl-clipboard
-wlogout
 xcb-util-errors
 xdg-utils
 xorg-xinit
 xorg-xinput
-yay
-yay-debug
 zathura
 zathura-pdf-mupdf
 zenity
-zotero
 zram-generator

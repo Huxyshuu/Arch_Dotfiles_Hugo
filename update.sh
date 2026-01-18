@@ -81,7 +81,7 @@ if [[ "$answer" =~ ^[Yy]$ ]]; then
   fi
 
   read -rp "Enter commit message: " commit_msg
-  git add "$BACKUP_DIR"
+  git add .
   git commit -m "$commit_msg"
   git push && echo -e "\e[32mChanges pushed!\e[0m" || \
     echo -e "\e[31mGit push failed; pull/rebase and try again.\e[0m"
