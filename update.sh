@@ -64,9 +64,9 @@ done
 
 # Official repository packages
 mkdir -p packages
-pacman -Qqe > packages/pkglist.txt
+pacman -Qqen > packages/pkglist.txt
 # AUR packages
-pacman -Qqm > packages/aurlist.txt
+pacman -Qqem > packages/aurlist.txt
 
 fc-list > fonts_list.txt
 
